@@ -1,0 +1,14 @@
+<ul class="hero-list no-select">
+  <li
+    *ngFor="let hero of heroes"
+    class="hero-item"
+  >
+    <a routerLink="/detail/{{ hero.id }}" class="hero-button" type="button">
+      <span>{{ hero.id }}</span>
+      <span>{{ hero.name }}</span>
+    </a>
+    <button mat-icon-button color="primary">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </li>
+</ul>

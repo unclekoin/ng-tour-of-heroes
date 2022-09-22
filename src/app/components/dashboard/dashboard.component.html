@@ -1,0 +1,8 @@
+<h2>Top Heroes</h2>
+<ul class="dashboard-list">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}" mat-raised-button color="primary">
+      {{ hero.name }}
+    </a>
+  </li>
+</ul>
