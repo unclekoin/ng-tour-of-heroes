@@ -1,3 +1,14 @@
+<div class="hero-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Hero name</mat-label>
+    <input matInput placeholder="Enter Hero name..." #heroName>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <div align="end">
+    <button (click)="add(heroName.value); heroName.value=''" mat-raised-button color="primary">Add Hero</button>
+  </div>
+</div>
+
 <ul class="hero-list no-select">
   <li
     *ngFor="let hero of heroes"
