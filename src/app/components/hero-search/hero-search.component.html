@@ -1,0 +1,23 @@
+<div class="search">
+  <div class="search-hero">
+    <mat-form-field appearance="outline">
+      <mat-label>Hero term</mat-label>
+      <input
+        #searchBox
+        (input)="search(searchBox.value)"
+        matInput
+        placeholder="Enter Term..."
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <ul class="search-list no-select">
+    <li *ngFor="let hero of heroes$ | async" class="search-item">
+      <a routerLink="/detail/{{ hero.id }}" class="search-button" type="button">
+        <span>{{ hero.id }}</span>
+        <span>{{ hero.name }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

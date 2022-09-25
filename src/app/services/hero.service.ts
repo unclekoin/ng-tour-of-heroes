@@ -29,14 +29,14 @@ export class HeroService {
   getHero(id: number): Observable<IHero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<IHero>(url).pipe(
-      tap((_) => this.log(`fetched Hero id: ${id}`)),
+      tap(() => this.log(`fetched Hero id: ${id}`)),
       catchError(this.handleError<IHero>(`getHero id: ${id}`))
     );
   }
 
   updateHero(hero: IHero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((_) => this.log(`updated Hero id: ${hero.id}`)),
+      tap(() => this.log(`updated Hero id: ${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
@@ -45,6 +45,27 @@ export class HeroService {
     return this.http.post<IHero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero: IHero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<IHero>('addHero'))
+    );
+  }
+
+  deleteHero(id: number): Observable<IHero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<IHero>(url, this.httpOptions)
+      .pipe(
+        tap(() => this.log(`deleted Hero id: ${id}`)),
+        catchError(this.handleError<IHero>('deleteHero'))
+      )
+  }
+
+  searchHeroes(term: string): Observable<IHero[]> {
+    if (!term.trim()) return of([]);
+    
+    return this.http.get<IHero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+         this.log(`found heroes matching "${term}"`) :
+         this.log(`no heroes matching "${term}"`)),
+      catchError(this.handleError<IHero[]>('searchHeroes', []))
     );
   }
 

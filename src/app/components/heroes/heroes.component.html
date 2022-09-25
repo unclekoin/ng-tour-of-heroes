@@ -1,3 +1,18 @@
+<ul class="hero-list no-select">
+  <li
+    *ngFor="let hero of heroes"
+    class="hero-item"
+  >
+    <a routerLink="/detail/{{ hero.id }}" class="hero-button" type="button">
+      <span>{{ hero.id }}</span>
+      <span>{{ hero.name }}</span>
+    </a>
+    <button (click)="delete(hero)" mat-icon-button color="primary">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </li>
+</ul>
+
 <div class="hero-form">
   <mat-form-field appearance="outline">
     <mat-label>Hero name</mat-label>
@@ -8,18 +23,3 @@
     <button (click)="add(heroName.value); heroName.value=''" mat-raised-button color="primary">Add Hero</button>
   </div>
 </div>
-
-<ul class="hero-list no-select">
-  <li
-    *ngFor="let hero of heroes"
-    class="hero-item"
-  >
-    <a routerLink="/detail/{{ hero.id }}" class="hero-button" type="button">
-      <span>{{ hero.id }}</span>
-      <span>{{ hero.name }}</span>
-    </a>
-    <button mat-icon-button color="primary">
-      <mat-icon>clear</mat-icon>
-    </button>
-  </li>
-</ul>
